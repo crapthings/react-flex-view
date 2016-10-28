@@ -23,8 +23,10 @@ const Flex = ({
   ten,
   width,
   height,
+  scroll,
   xScroll,
   yScroll,
+  element,
   tag,
   style,
   children,
@@ -33,7 +35,7 @@ const Flex = ({
 
   const flexStyle = {
     overflowX: `${xScroll && 'scroll'}`,
-    overflowY: `${yScroll && 'scroll'}`,
+    overflowY: `${(scroll || yScroll) && 'scroll'}`,
     display: 'flex',
     flex: `${(ten && 10) || (nine && 9) || (eight && 8) || (seven && 7) || (six && 6) || (five && 5) || (four && 4) || (three && 3) || (two && 2) || (one && 1) || flex || ''}`,
     width: `${width || '100%'}`,
@@ -44,7 +46,7 @@ const Flex = ({
     ...style
   }
 
-  return React.createElement(tag || 'div', { style: flexStyle, ...props }, children)
+  return React.createElement(element || tag || 'div', { style: flexStyle, ...props }, children)
 
 }
 
